@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { filterExpenses } from '../../utils/filter';
 import { toast } from 'react-hot-toast';
 import ExpenseTable from '../../components/expense/ExpenseTable';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const AllExpenses = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const AllExpenses = () => {
   useEffect(() => {
     dispatch(getAllExpenses());
   }, []);
-  const { expenses } = useSelector((state) => state['expense']);
+  const { expenses, isLoading } = useSelector((state) => state['expense']);
 
   useEffect(() => {
     setFilteredExpenses(expenses);
@@ -92,7 +93,11 @@ const AllExpenses = () => {
     setFilteredExpenses(response.payload.expenses);
   };
 
-  return (
+  return isLoading ? (
+    <div className='flex flex-col md:flex-row h-screen w-screen p-3 items-center justify-center'>
+      <ClipLoader size={50} color='#000' />
+    </div>
+  ) : (
     <div className='w-full pt-20 lg:pt-24'>
       <div className='w-full md:max-w-[95%] lg:max-w-[90%] flex justify-between items-center mx-auto px-3 md:px-0 '>
         <h1 className='text-2xl font-medium md:text-2xl'>Your Expenses</h1>

@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import AddExpense from './pages/expense/AddExpense';
 import AllExpenses from './pages/expense/AllExpenses';
 import EditExpense from './pages/expense/EditExpense';
+import Task from './pages/task/Task';
 function App() {
   return (
     <>
@@ -20,6 +21,7 @@ function App() {
             <Route path='/expense' element={<AllExpenses />} />
             <Route path='/expense/new' element={<AddExpense />} />
             <Route path='/expense/update/:id' element={<EditExpense />} />
+            <Route path='/task' element={<Task />} />
           </Route>
         </Routes>
         <Toaster position='top-right' />
